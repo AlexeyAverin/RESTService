@@ -27,7 +27,7 @@ echo "<!DOCTYPE html>
             <div class='logotip'>RST</div>
             <div class='company'>Добрый день!!!</div>
             <div class='menu'>";
-
+echo "<a class='noselect' href=''>Третья</a><a class='noselect' href=''>Вторая</a><a class='noselect' href=''>Первая</a>";
 
 echo "
             </div>
