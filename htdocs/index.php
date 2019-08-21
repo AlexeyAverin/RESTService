@@ -6,11 +6,49 @@ ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Slim\Factory\AppFactory;
+
+require __DIR__.'/vendor/autoload.php';
+
+
+
+$app = AppFactory::create();
 
 
 
 
 
+$app->get('/', function (Request $request, Response $response, $args) {
+    $response->getBody()->write("Добрый день!!!");
+    return $response;
+});
+
+$app->get('/books/{id}', function(Request $request, Response $response, $args){
+    $response->getBody()->write("Добрый вечер!!!<br>Отображаю информацию по: ".$args['id']);
+    $response = $response->withAddedHeader('X-Header-Autor', 'Mickey'); // Добавляем заголовок    
+    
+    return $response;
+});
+
+$app->post('/books/{id}', function(Request $request, Response $response, $args){
+    $response->getBody()->write("Добрый вечер!!!<br>Добавляю информацию по: ".$args['id']);
+    return $response;
+});
+
+$app->delete('/books/{id}', function(Request $request, Response $response, $args){
+
+    $response->getBody()->write("Добрый вечер!!!<br>Удаляю информацию по: ".$args['id']);
+    return $response;
+});
+
+$app->put('/books/{id}', function(Request $request, Response $response, $args){
+    $response->getBody()->write("Добрый вечер!!!<br>Изменяю информацию по: ".$args['id']);
+    return $response;
+});
+
+$app->run();
 
 
 
